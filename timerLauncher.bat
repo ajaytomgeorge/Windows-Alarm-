@@ -1,0 +1,1 @@
+C:\Users\ajayt\AppData\Local\Programs\Python\Python37\python.exe C:\Users\ajayt\Desktop\startup_tasks\recurring_timer.py
