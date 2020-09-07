@@ -5,7 +5,7 @@ from win10toast import ToastNotifier
 
 
 stop_flag = False
-interval_time = 600
+interval_time = 900
 init_start=True
 
 def timer_gui(name) -> None:
