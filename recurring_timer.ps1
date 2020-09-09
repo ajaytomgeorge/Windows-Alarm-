@@ -1,7 +1,15 @@
 $ErrorActionPreference = "Stop"
+$counter = 0;
 for (; ; ) {
+    if($counter -eq 0) {
+        $counter += 1
+        $notificationTitle = "Hai Ajay, Startup Protocol BASIC Initiated at " + [DateTime]::Now.ToShortTimeString()
+     }else {
+        $notificationTitle = "Hai Ajay, Time for a break: " + [DateTime]::Now.ToShortTimeString() + "`nCurrent Protocol BASIC"
+     }
+
     try {
-        $notificationTitle = "Hai Ajay, Time for a break: " + [DateTime]::Now.ToShortTimeString()
+       
 
         [Windows.UI.Notifications.ToastNotificationManager, Windows.UI.Notifications, ContentType = WindowsRuntime] > $null
         $template = [Windows.UI.Notifications.ToastNotificationManager]::GetTemplateContent([Windows.UI.Notifications.ToastTemplateType]::ToastText01)
@@ -17,13 +25,13 @@ for (; ; ) {
         $toast = [Windows.UI.Notifications.ToastNotification]::new($xml)
         $toast.Tag = "PowerShell"
         $toast.Group = "PowerShell"
-        $toast.ExpirationTime = [DateTimeOffset]::Now.AddMinutes(1)
+        $toast.ExpirationTime = [DateTimeOffset]::Now.AddMinutes(10)
         #$toast.SuppressPopup = $true
         $notifier = [Windows.UI.Notifications.ToastNotificationManager]::CreateToastNotifier("PowerShell")
         $notifier.Show($toast);
     }
     catch {
-        # do something with $_, log it, more likely
+       Write-Host "Unexpected Exception occured"
     }
    
     # wait for a minute
